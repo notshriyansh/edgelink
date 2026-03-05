@@ -1,0 +1,21 @@
+name = "global-link-api"
+main = "src/index.ts"
+compatibility_date = "2026-03-03"
+
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "global-links"
+database_id = "0883c7f3-b2f8-4abc-97f5-3b5941aadd5a"
+
+[[durable_objects.bindings]]
+name = "ANALYTICS"
+class_name = "AnalyticsDO"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["AnalyticsDO"]
+
+[vars]
+CLERK_SECRET_KEY = "sk_test_w7CijmTDTsLzC7ni5E5CN2iL9Y97BWh38mIbXsa3YD"
