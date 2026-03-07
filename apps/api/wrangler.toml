@@ -17,9 +17,5 @@ class_name = "AnalyticsDO"
 tag = "v1"
 new_sqlite_classes = ["AnalyticsDO"]
 
-[[migrations]]
-tag = "v1"
-new_classes = ["AnalyticsDO"]
-
 [vars]
 CLERK_SECRET_KEY = "sk_test_w7CijmTDTsLzC7ni5E5CN2iL9Y97BWh38mIbXsa3YD"
