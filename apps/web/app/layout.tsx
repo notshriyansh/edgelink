@@ -13,6 +13,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 
+import { ToastProvider } from "@/components/ui/sonner";
+
 export const metadata: Metadata = {
   title: "EdgeLink",
   description: "Edge-native URL analytics platform",
@@ -28,6 +30,7 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body className="bg-background text-foreground">
           <ThemeProvider>
+            <ToastProvider />
             <header className="border-b bg-background">
               <div className="max-w-7xl mx-auto flex items-center justify-between h-14 px-6">
                 <Link href="/" className="font-semibold text-lg">

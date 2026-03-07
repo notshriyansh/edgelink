@@ -111,11 +111,25 @@ export default function AnalyticsPage() {
                   <XAxis dataKey="day" />
                   <YAxis />
                   <Tooltip />
+                  <defs>
+                    <linearGradient
+                      id="colorClicks"
+                      x1="0"
+                      y1="0"
+                      x2="0"
+                      y2="1"
+                    >
+                      <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8} />
+                      <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+
                   <Line
                     type="monotone"
                     dataKey="clicks"
                     stroke="#3b82f6"
                     strokeWidth={3}
+                    fill="url(#colorClicks)"
                   />
                 </LineChart>
               </ResponsiveContainer>

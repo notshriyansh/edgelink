@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@clerk/nextjs";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Copy } from "lucide-react";
+import { toast } from "sonner";
 
 import {
   Table,
@@ -50,11 +52,7 @@ export default function LinksPage() {
 
     navigator.clipboard.writeText(url);
 
-    setCopied(shortCode);
-
-    setTimeout(() => {
-      setCopied(null);
-    }, 2000);
+    toast.success("Link copied to clipboard");
   }
 
   return (
@@ -99,9 +97,10 @@ export default function LinksPage() {
                 <TableCell className="flex gap-4">
                   <button
                     onClick={() => copyLink(link.short_code)}
-                    className="text-primary text-sm hover:underline"
+                    className="flex items-center gap-1 text-sm text-primary hover:underline"
                   >
-                    {copied === link.short_code ? "Copied!" : "Copy"}
+                    <Copy size={14} />
+                    Copy
                   </button>
 
                   <Link

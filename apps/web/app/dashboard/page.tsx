@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@clerk/nextjs";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type Stats = {
   totalLinks: number;
@@ -35,6 +36,16 @@ export default function DashboardPage() {
 
     loadStats();
   }, []);
+
+  if (!stats) {
+    return (
+      <div className="grid grid-cols-3 gap-6">
+        <Skeleton className="h-28" />
+        <Skeleton className="h-28" />
+        <Skeleton className="h-28" />
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-8">
