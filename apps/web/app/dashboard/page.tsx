@@ -46,7 +46,7 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">
-        <Card>
+        <Card className="hover:shadow-lg transition">
           <CardHeader>
             <CardTitle>Total Links</CardTitle>
           </CardHeader>
@@ -56,7 +56,7 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="hover:shadow-lg transition">
           <CardHeader>
             <CardTitle>Total Clicks</CardTitle>
           </CardHeader>
@@ -66,7 +66,7 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="hover:shadow-lg transition">
           <CardHeader>
             <CardTitle>Clicks Today</CardTitle>
           </CardHeader>
