@@ -15,6 +15,10 @@ class_name = "AnalyticsDO"
 
 [[migrations]]
 tag = "v1"
+new_sqlite_classes = ["AnalyticsDO"]
+
+[[migrations]]
+tag = "v1"
 new_classes = ["AnalyticsDO"]
 
 [vars]
