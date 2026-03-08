@@ -1,11 +1,11 @@
-# EdgeLink
+# LinkScope
 
 **Edge-native URL shortener with global analytics**
 
-EdgeLink is a distributed URL shortening platform built on the Cloudflare edge network.
+LinkScope is a distributed URL shortening platform built on the Cloudflare edge network.
 It provides fast global redirects, real-time analytics, and a modern SaaS dashboard.
 
-Unlike traditional URL shorteners that rely on centralized servers, EdgeLink runs entirely on the edge using Cloudflare Workers, enabling low latency and high scalability.
+Unlike traditional URL shorteners that rely on centralized servers, LinkScope runs entirely on the edge using Cloudflare Workers, enabling low latency and high scalability.
 
 ---
 
@@ -99,7 +99,7 @@ Unlike traditional URL shorteners that rely on centralized servers, EdgeLink run
 ## Project Structure
 
 ```
-edgelink/
+linkscope/
 │
 ├─ apps/
 │   ├─ api/      # Cloudflare Worker backend
@@ -118,7 +118,7 @@ edgelink/
 
 ```
 git clone https://github.com/yourusername/edgelink.git
-cd edgelink
+cd linkscope
 ```
 
 ---
@@ -155,7 +155,7 @@ http://localhost:3000
 
 ## Authentication
 
-EdgeLink uses Clerk for authentication.
+LinkScope uses Clerk for authentication.
 
 The frontend obtains a JWT session token and sends it with API requests:
 
@@ -184,7 +184,7 @@ This design prevents race conditions and supports high concurrency.
 
 Traditional URL shorteners rely on centralized servers, which increases latency for global users.
 
-EdgeLink instead runs on Cloudflare’s edge network, allowing:
+LinkScope instead runs on Cloudflare’s edge network, allowing:
 
 - Global low-latency redirects
 - Automatic scaling
