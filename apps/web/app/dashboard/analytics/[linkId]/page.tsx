@@ -103,8 +103,11 @@ export default function AnalyticsPage() {
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-bold">Analytics</h1>
-        <p className="text-sm text-muted-foreground">
-          Live clicks: {liveClicks}
+        <p className="text-sm text-muted-foreground flex items-center gap-2">
+          Live clicks:
+          <span className="font-semibold text-primary animate-pulse">
+            {liveClicks}
+          </span>
         </p>
       </div>
 

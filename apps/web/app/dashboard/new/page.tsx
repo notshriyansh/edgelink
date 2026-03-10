@@ -2,6 +2,7 @@
 
 import { useAuth } from "@clerk/nextjs";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -11,7 +12,6 @@ export default function NewLinkPage() {
   const [url, setUrl] = useState("");
   const [alias, setAlias] = useState("");
   const [expires, setExpires] = useState("");
-
   const [shortLink, setShortLink] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -44,9 +44,7 @@ export default function NewLinkPage() {
 
       const data = await res.json();
 
-      if (!res.ok) {
-        throw new Error(data.error || "Failed to create link");
-      }
+      if (!res.ok) throw new Error(data.error || "Failed");
 
       setShortLink(data.shortUrl);
     } catch (err: any) {
@@ -57,17 +55,21 @@ export default function NewLinkPage() {
   }
 
   return (
-    <div className="max-w-xl space-y-6">
+    <motion.div
+      className="max-w-xl space-y-6"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+    >
       <div>
-        <h2 className="text-2xl font-semibold">Create Short Link</h2>
+        <h2 className="text-3xl font-semibold">Create Short Link</h2>
         <p className="text-sm text-muted-foreground">
-          Generate a new short URL instantly
+          Generate a short URL instantly
         </p>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-4 border rounded-xl p-6 bg-card shadow-sm">
         <Input
-          placeholder="https://example.com/very-long-url"
+          placeholder="https://example.com"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
         />
@@ -79,7 +81,7 @@ export default function NewLinkPage() {
         />
 
         <select
-          className="border rounded-md p-2 w-full"
+          className="border rounded-md p-2 w-full bg-background"
           value={expires}
           onChange={(e) => setExpires(e.target.value)}
         >
@@ -89,35 +91,43 @@ export default function NewLinkPage() {
           <option value="30">Expire in 30 days</option>
         </select>
 
-        <Button onClick={createLink} disabled={loading} className="w-full">
-          {loading ? "Generating..." : "Generate Short Link"}
+        <Button
+          onClick={createLink}
+          disabled={loading}
+          className="w-full hover:scale-[1.02] transition"
+        >
+          {loading ? "Generating..." : "Generate Link"}
         </Button>
       </div>
 
       {error && <p className="text-red-500 text-sm">{error}</p>}
 
       {shortLink && (
-        <div className="border rounded-lg p-4 space-y-2 bg-muted">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="border rounded-lg p-4 space-y-2 bg-muted"
+        >
           <p className="text-sm text-muted-foreground">Your short link</p>
 
           <div className="flex justify-between items-center">
             <a
               href={shortLink}
               target="_blank"
-              className="font-mono text-blue-600"
+              className="font-mono text-primary"
             >
               {shortLink}
             </a>
 
             <button
-              className="text-sm text-blue-600"
+              className="text-sm hover:underline"
               onClick={() => navigator.clipboard.writeText(shortLink)}
             >
               Copy
             </button>
           </div>
-        </div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 }
