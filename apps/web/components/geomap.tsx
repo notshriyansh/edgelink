@@ -26,7 +26,7 @@ export default function GeoMap({ data }: any) {
       style={{ width: "100%", height: "100%" }}
     >
       <Geographies geography={geoUrl}>
-        {({ geographies }) =>
+        {({ geographies }: { geographies: any[] }) =>
           geographies.map((geo: any) => {
             const code = geo.properties.ISO_A2;
 
