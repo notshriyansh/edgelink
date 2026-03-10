@@ -3,5 +3,9 @@
   "private": true,
   "workspaces": [
     "apps/*"
-  ]
+  ],
+  "dependencies": {
+    "react-is": "^19.2.4",
+    "recharts": "^3.8.0"
+  }
 }
