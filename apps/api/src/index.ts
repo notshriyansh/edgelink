@@ -203,14 +203,27 @@ app.get("/analytics/live/:linkId", async (c) => {
   const stream = new ReadableStream({
     start(controller) {
       interval = setInterval(async () => {
-        const result = await c.env.DB.prepare(
+        const countResult = await c.env.DB.prepare(
           `SELECT COUNT(*) as count FROM clicks WHERE link_id = ?`,
         )
           .bind(linkId)
           .first();
 
+        const latest = await c.env.DB.prepare(
+          `
+          SELECT country
+          FROM clicks
+          WHERE link_id = ?
+          ORDER BY created_at DESC
+          LIMIT 1
+          `,
+        )
+          .bind(linkId)
+          .first();
+
         const data = JSON.stringify({
-          clicks: result?.count || 0,
+          clicks: countResult?.count || 0,
+          country: latest?.country || null,
         });
 
         controller.enqueue(`data: ${data}\n\n`);

@@ -30,6 +30,7 @@ export default function AnalyticsPage() {
 
   const [clicks, setClicks] = useState<Click[]>([]);
   const [liveClicks, setLiveClicks] = useState<number>(0);
+  const [liveCountry, setLiveCountry] = useState<string | undefined>();
 
   useEffect(() => {
     async function load() {
@@ -60,7 +61,12 @@ export default function AnalyticsPage() {
 
     source.onmessage = (event) => {
       const data = JSON.parse(event.data);
+
       setLiveClicks(data.clicks);
+
+      if (data.country) {
+        setLiveCountry(data.country);
+      }
     };
 
     return () => source.close();
@@ -145,7 +151,7 @@ export default function AnalyticsPage() {
           <h2 className="font-semibold mb-4">Geographic Distribution</h2>
 
           <div className="h-80">
-            <GeoMap data={countryStats as any} />
+            <GeoMap data={countryStats as any} liveCountry={liveCountry} />
           </div>
         </div>
       </div>

@@ -59,7 +59,7 @@ export default function DashboardPage() {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid gap-6 md:grid-cols-3">
         {cards.map((card, i) => (
           <motion.div
             key={card.title}
@@ -67,26 +67,33 @@ export default function DashboardPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
           >
-            <Card>
-              <CardHeader>
+            <Card className="h-27.5 flex flex-col justify-center">
+              <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-muted-foreground">
                   {card.title}
                 </CardTitle>
               </CardHeader>
 
               <CardContent>
-                <p className="text-4xl font-bold">{card.value}</p>
+                <p className="text-3xl font-bold tracking-tight">
+                  {card.value}
+                </p>
               </CardContent>
             </Card>
           </motion.div>
         ))}
       </div>
 
-      <div className="border rounded-xl p-6 bg-card">
-        <h2 className="font-semibold mb-4">Global Traffic</h2>
+      <div className="rounded-xl border bg-card p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="font-semibold text-lg">Global Traffic</h2>
+          <span className="text-sm text-muted-foreground">
+            Click distribution
+          </span>
+        </div>
 
-        <div className="h-80">
-          <GeoMap data={[]} />
+        <div className="h-105 w-full">
+          <GeoMap data={[{ country: "IN", clicks: stats.totalClicks }]} />
         </div>
       </div>
     </div>
